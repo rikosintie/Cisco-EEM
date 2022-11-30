@@ -148,26 +148,29 @@ action 0100 end
 
 ## Detectors
 show event manager detector all    
-No.  Name                Version   Node        Type    
-1    application         01.00     node0/0     RP      
-2    routing             03.00     node0/0     RP      
-3    syslog              01.00     node0/0     RP      
-4    identity            01.00     node0/0     RP      
-5    neighbor-discovery  01.00     node0/0     RP      
-6    mat                 01.00     node0/0     RP      
-7    cli                 01.00     node0/0     RP      
-8    config              01.00     node0/0     RP      
-9    counter             01.00     node0/0     RP      
-10   env                 01.00     node0/0     RP      
-11   gold                01.00     node0/0     RP      
-12   interface           01.00     node0/0     RP      
-13   ioswdsysmon         01.00     node0/0     RP      
-14   ipsla               01.00     node0/0     RP      
-15   none                01.00     node0/0     RP      
-16   oir                 01.00     node0/0     RP      
-17   rpc                 01.00     node0/0     RP      
-18   snmp                01.00     node0/0     RP      
-19   snmp-object         01.00     node0/0     RP      
-20   snmp-notification   01.00     node0/0     RP      
-21   test                01.00     node0/0     RP      
-22   timer               01.00     node0/0     RP      
+
+
+| No. |  Name              | Version   | Node    |    Type  | 
+| :--:| :--:               |  :--:       | :--:     | :--:  | 
+|1    | application        | 01.00   |  node0/0  |  RP  |
+|2    | routing            | 03.00   |  node0/0   | RP      
+|3    | syslog             | 01.00   |  node0/0   | RP      
+|4    | identity           | 01.00   |  node0/0   | RP      
+|5    | neighbor-discovery | 01.00   |  node0/0   | RP      
+|6    | mat                | 01.00   |  node0/0   | RP      
+|7    | cli                | 01.00   |  node0/0   | RP      
+|8    | config             | 01.00   |  node0/0   | RP      
+|9    | counter            | 01.00   |  node0/0   | RP      
+|10   | env                | 01.00   |  node0/0   | RP      
+|11   | gold               | 01.00   | node0/0    | RP      
+|12   | interface          | 01.00   | node0/0    | RP      
+|13   | ioswdsysmon        | 01.00   | node0/0    | RP      
+|14   | ipsla              | 01.00   | node0/0    | RP      
+|15   | none               | 01.00   | node0/0    | RP      
+|16   | oir                | 01.00   | node0/0    | RP      
+|17   | rpc                | 01.00   | node0/0    | RP      
+|18   | snmp               | 01.00   | node0/0    | RP      
+|19   | snmp-object        | 01.00   | node0/0    | RP      
+|20   | snmp-notification  | 01.00   | node0/0    | RP      
+|21   | test               | 01.00   | node0/0    | RP      
+|22   | timer              | 01.00   | node0/0    | RP      
