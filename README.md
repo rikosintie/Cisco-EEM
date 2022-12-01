@@ -8,6 +8,9 @@ My journey down the Embedded Event Manager trail
 [Embedded Event Manager Examples - Roger Perkins](https://www.rogerperkin.co.uk/eem/embedded-event-manager-examples/)  
 [tcl scripting for IOS](https://books.google.com/books?id=RFfvqHQ0plsC&pg=PT162&lpg=PT162&dq=sl_intf_down.tcl&source=bl&ots=bmJ9ml7_Aw&sig=ACfU3U00Vqs6bnPvtV00jHO18PUh1DYWfA&hl=en&sa=X&ved=2ahUKEwj0z-CblNX7AhX6MUQIHX--ArAQ6AF6BAglEAM#v=onepage&q=sl_intf_down.tcl&f=false) - Google book preview.  
 [EEM Built-in "Action" Variables](https://community.cisco.com/t5/networking-knowledge-base/eem-built-in-quot-action-quot-variables/ta-p/3123406)  
+[Variable for finding a port in syslog](https://community.cisco.com/t5/network-management/eem-variables/m-p/4586627) - This example shows how to watch syslog for a specific port being disabled by port security.  
+[EEM variable $_syslog_msg not working](https://community.cisco.com/t5/routing/eem-variable-syslog-msg-not-working/m-p/4505375)  
+[Convert an EEM Applet to a Tcl Policy](https://www.marcuscom.com/convert_applet/)  
 
 
 ## EEM Overview
@@ -145,6 +148,7 @@ action 0100 end
 * show event manager session cli username 
 * show event manager scheduler thread detailed
 * show event manager version 
+* show event manager detector syslog detailed
 
 ## Detectors
 show event manager detector all    
@@ -174,3 +178,35 @@ show event manager detector all
 |20   | snmp-notification  | 01.00   | node0/0    | RP      
 |21   | test               | 01.00   | node0/0    | RP      
 |22   | timer              | 01.00   | node0/0    | RP      
+
+
+## Using TCL scripts
+
+Copy the script to flash  
+`copy tftp://192.168.10.103/shut-int.tcl flash:/policies`  
+
+Verify the script copied  
+```
+cd policies  
+pwd
+flash:/policies/
+dir  
+Directory of flash:/policies/
+
+  558  -rwx        1893  Nov 30 2022 16:53:08 -08:00  shut-int.tcl
+```
+
+Register the location where scripts are stored on flash with the EEM server:  
+`event manager directory user policy flash:/policies`  
+
+Register your EEM Tcl policy:  
+`event manager policy shut-int.tcl`  
+
+Verify that the script is registered:    
+```
+show event manager policy registered 
+1    script    user    syslog              Off   Wed Nov 30 16:34:15 2022  shut-int.tcl
+ pattern {.*%LINK-5-CHANGED: Interface GigabitEthernet[0-9\/]+, changed state to administratively down.*}
+ nice 0 queue-priority normal maxrun 20.000 scheduler rp_primary Secu none
+```
+
