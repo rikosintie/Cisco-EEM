@@ -10,7 +10,7 @@ My journey down the Embedded Event Manager trail
 [EEM Built-in "Action" Variables](https://community.cisco.com/t5/networking-knowledge-base/eem-built-in-quot-action-quot-variables/ta-p/3123406)  
 [Variable for finding a port in syslog](https://community.cisco.com/t5/network-management/eem-variables/m-p/4586627) - This example shows how to watch syslog for a specific port being disabled by port security.  
 [EEM variable $_syslog_msg not working](https://community.cisco.com/t5/routing/eem-variable-syslog-msg-not-working/m-p/4505375)  
-[Convert an EEM Applet to a Tcl Policy](https://www.marcuscom.com/convert_applet/)  
+[Convert an EEM Applet to a Tcl Policy](https://www.marcuscom.com/convert_applet/) = Joe Clarke's 
 
 
 ## EEM Overview
@@ -179,7 +179,9 @@ show event manager detector all
 |21   | test               | 01.00   | node0/0    | RP      
 |22   | timer              | 01.00   | node0/0    | RP      
 
-
+ 
+</br>  
+  
 ## Using TCL scripts
 
 Copy the script to flash  
@@ -194,13 +196,14 @@ dir
 Directory of flash:/policies/
 
   558  -rwx        1893  Nov 30 2022 16:53:08 -08:00  shut-int.tcl
+cd ..
 ```
 
 Register the location where scripts are stored on flash with the EEM server:  
 `event manager directory user policy flash:/policies`  
 
 Register your EEM Tcl policy:  
-`event manager policy shut-int.tcl`  
+`event manager policy shut-int.tcl type user`  
 
 Verify that the script is registered:    
 ```
