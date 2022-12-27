@@ -199,6 +199,10 @@ Directory of flash:/policies/
 cd ..
 ```
 
+**Display the file**
+`3750x#more flash:/policies/int-UP.tcl`  
+
+
 Register the location where scripts are stored on flash with the EEM server:  
 `event manager directory user policy flash:/policies`  
 
@@ -212,4 +216,25 @@ show event manager policy registered
  pattern {.*%LINK-5-CHANGED: Interface GigabitEthernet[0-9\/]+, changed state to administratively down.*}
  nice 0 queue-priority normal maxrun 20.000 scheduler rp_primary Secu none
 ```
+
+### Create a file from the console  
+From a blog by Valter Popeskic  
+[Create or Edit a File on Cisco IOS Flash](https://howdoesinternetwork.com/2018/create-file-cisco-ios)  
+
+With this trick, you can write or edit a file from Flash memory directly from Cisco IOS console.  
+
+I used Cisco IOS Tcl shell which is available on Cisco devices to allow running Tcl scripts and commands directly from the Cisco IOS CLI prompt. I think that this is the only way of changing text files from Cisco console, correct me in the comments if you know of something else.  
+
+Next example will create a text file named test.txt, put some words inside and save the file on Cisco device flash.  
+
+```
+R2#tclsh
+R2(tcl)#puts [open "flash:test.txt" w+] {
++>(tcl)#With this trick, you can write or edit a file
++>(tcl)#from Flash memory directly from Cisco IOS console. 
++>(tcl)#} 
+R2(tcl)#tclquit
+```  
+
+This method is great if you don't have an enterprise wide tftp server running.
 
