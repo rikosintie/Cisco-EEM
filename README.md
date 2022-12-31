@@ -1,16 +1,22 @@
 # Cisco EEM  
 My journey down the Embedded Event Manager trail  
 
-[Cisco IOS Embedded Event Manager (EEM)](https://www.cisco.com/c/en/us/products/ios-nx-os-software/ios-embedded-event-manager-eem/index.html)  
-[Understanding Cisco EEM by examples Part 1](https://learningnetwork.cisco.com/s/article/understanding-cisco-eem-by-examples-part-1)  
-[Understand Best Practices and Useful Scripts for EEM](https://www.cisco.com/c/en/us/support/docs/ios-nx-os-software/ios-xe-16/216091-best-practices-and-useful-scripts-for-ee.html)  
-[Cisco IOS Embedded Event Manager Command Reference](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/eem/command/eem-cr-book/eem-cr-e1.html)  
-[Embedded Event Manager Examples - Roger Perkins](https://www.rogerperkin.co.uk/eem/embedded-event-manager-examples/)  
-[tcl scripting for IOS](https://books.google.com/books?id=RFfvqHQ0plsC&pg=PT162&lpg=PT162&dq=sl_intf_down.tcl&source=bl&ots=bmJ9ml7_Aw&sig=ACfU3U00Vqs6bnPvtV00jHO18PUh1DYWfA&hl=en&sa=X&ved=2ahUKEwj0z-CblNX7AhX6MUQIHX--ArAQ6AF6BAglEAM#v=onepage&q=sl_intf_down.tcl&f=false) - Google book preview.  
-[EEM Built-in "Action" Variables](https://community.cisco.com/t5/networking-knowledge-base/eem-built-in-quot-action-quot-variables/ta-p/3123406)  
-[Variable for finding a port in syslog](https://community.cisco.com/t5/network-management/eem-variables/m-p/4586627) - This example shows how to watch syslog for a specific port being disabled by port security.  
-[EEM variable $_syslog_msg not working](https://community.cisco.com/t5/routing/eem-variable-syslog-msg-not-working/m-p/4505375)  
-[Convert an EEM Applet to a Tcl Policy](https://www.marcuscom.com/convert_applet/) = Joe Clarke's 
+Here are some links to get started with. They are ordered by What is EEM, the data sheet, and then some examples.
+
+**Reference**
+* [Cisco IOS Embedded Event Manager (EEM)](https://www.cisco.com/c/en/us/products/ios-nx-os-software/ios-embedded-event-manager-eem/index.html) - Cisco IOS Embedded Event Manager (EEM) is a powerful and flexible subsystem that provides real-time network event detection and onboard automation.  
+* [Cisco IOS Embedded Event Manager 4.0](https://www.cisco.com/c/en/us/products/collateral/ios-nx-os-software/ios-embedded-event-manager-eem/datasheet_c78-692254.html) - EEM is a powerful and flexible tool to automate tasks and customize the behavior of Cisco IOS Software and the operation of the device.  
+* [Cisco IOS Embedded Event Manager Command Reference](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/eem/command/eem-cr-book/eem-cr-e1.html)  
+* [EEM Built-in "Action" Variables](https://community.cisco.com/t5/networking-knowledge-base/eem-built-in-quot-action-quot-variables/ta-p/3123406) - Joe Clarke is a Cisco Hall of Fame employee. This page is a must read for learning tcl scripting.  
+
+**Examples**  
+* [Understanding Cisco EEM by examples Part 1](https://learningnetwork.cisco.com/s/article/understanding-cisco-eem-by-examples-part-1) - Some useful scripts to get started with.   
+* [Embedded Event Manager Examples - Roger Perkins](https://www.rogerperkin.co.uk/eem/embedded-event-manager-examples/) - Roger Perkins is a CCIE with an easy to understand blogging style!  
+* [Understand Best Practices and Useful Scripts for EEM](https://www.cisco.com/c/en/us/support/docs/ios-nx-os-software/ios-xe-16/216091-best-practices-and-useful-scripts-for-ee.html) - A Cisco blog on best practices.   
+* [tcl scripting for IOS](https://books.google.com/books?id=RFfvqHQ0plsC&pg=PT162&lpg=PT162&dq=sl_intf_down.tcl&source=bl&ots=bmJ9ml7_Aw&sig=ACfU3U00Vqs6bnPvtV00jHO18PUh1DYWfA&hl=en&sa=X&ved=2ahUKEwj0z-CblNX7AhX6MUQIHX--ArAQ6AF6BAglEAM#v=onepage&q=sl_intf_down.tcl&f=false) - Google book preview.  
+* [Variable for finding a port in syslog](https://community.cisco.com/t5/network-management/eem-variables/m-p/4586627) - This example shows how to watch syslog for a specific port being disabled by port security.  
+* [EEM variable $_syslog_msg not working](https://community.cisco.com/t5/routing/eem-variable-syslog-msg-not-working/m-p/4505375) - An EEM community post. Good read on troubleshooting EEM variables.  
+* [Convert an EEM Applet to a Tcl Policy](https://www.marcuscom.com/convert_applet/) - Joe Clarke's online page for converting acition item scripts into tcl scripts. It's pretty amazing!  
 
 
 ## EEM Overview
