@@ -183,11 +183,60 @@ show event manager detector all
 </br>  
   
 ## Using TCL scripts
+For this example, we will be using a file called int-UP.tcl.  
+We will create a folder called `policies` to store the file in.  
+This is not required but is a common practice to keep the scripts organized.
 
-Copy the script to flash  
-`copy tftp://192.168.10.103/shut-int.tcl flash:/policies`  
+**Just for fun, let's verify the version of EEM on the switch**
+```
+3750x#show event manager version
+Embedded Event Manager Version 4.00
+Component Versions:
+eem: (rel9)1.2.21
+eem-gold: (rel1)1.0.2
+eem-call-home: (rel2)1.0.4
+Event Detectors:
+Name                Version   Node        Type
+application         01.00     node0/0     RP
+identity            01.00     node0/0     RP
+mat                 01.00     node0/0     RP
+neighbor-discovery  01.00     node0/0     RP
+generic             01.00     node0/0     RP
+routing             03.00     node0/0     RP
+syslog              01.00     node0/0     RP
+msp                 03.00     node0/0     RP
+cli                 01.00     node0/0     RP
+config              01.00     node0/0     RP
+counter             01.00     node0/0     RP
+crash               01.00     node0/0     RP
+ds                  01.00     node0/0     RP
+env                 01.00     node0/0     RP
+gold                01.00     node0/0     RP
+interface           01.00     node0/0     RP
+ioswdsysmon         01.00     node0/0     RP
+ipsla               01.00     node0/0     RP
+none                01.00     node0/0     RP
+oir                 01.00     node0/0     RP
+rpc                 01.00     node0/0     RP
+snmp                01.00     node0/0     RP
+snmp-object         01.00     node0/0     RP
+snmp-notification   01.00     node0/0     RP
+test                01.00     node0/0     RP
+timer               01.00     node0/0     RP
+```
 
-Verify the script copied  
+**Create the folder**
+```
+3750x#pwd !print the current working directory  
+flash:/  
+3750x#mkdir policies !make the folder  
+```
+
+
+**Copy the script to the policies folder**  
+`copy tftp://192.168.10.103/int-UP.tcl flash:/policies`  
+
+Verify that the script copied  
 ```
 cd policies  
 pwd
@@ -195,25 +244,40 @@ flash:/policies/
 dir  
 Directory of flash:/policies/
 
-  558  -rwx        1893  Nov 30 2022 16:53:08 -08:00  shut-int.tcl
+  612  -rwx        2431  Dec 20 2022 20:05:48 -08:00  int-UP.tcl
 cd ..
 ```
+**Alternatively, from the flash folder**  
+```
+3750x#dir flash:/policies  
+Directory of flash:/policies/  
+  
+  612  -rwx        2431  Dec 20 2022 20:05:48 -08:00  int-UP.tcl  
+```
 
-**Display the file**
+**Display the file**  
+IOS supports the `more` Linux command to display text files.  
 `3750x#more flash:/policies/int-UP.tcl`  
 
 
-Register the location where scripts are stored on flash with the EEM server:  
+**Register the location where scripts are stored on flash with the EEM server:**  
 `event manager directory user policy flash:/policies`  
 
-Register your EEM Tcl policy:  
-`event manager policy shut-int.tcl type user`  
-
-Verify that the script is registered:    
+**Verify the location**
 ```
-show event manager policy registered 
-1    script    user    syslog              Off   Wed Nov 30 16:34:15 2022  shut-int.tcl
- pattern {.*%LINK-5-CHANGED: Interface GigabitEthernet[0-9\/]+, changed state to administratively down.*}
+3750x#show event manager directory user policy  
+flash:/policies 
+```  
+
+**Register the EEM Tcl policy:**  
+`event manager policy int-UP.tcl type user`  
+
+**Verify that the script is registered:**  
+```
+3750x#show event manager policy registered
+No.  Class     Type    Event Type          Trap  Time Registered           Name
+1    script    user    syslog              Off   Sun Jan 1 16:09:34 2006   int-UP.tcl
+ pattern {.*%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet[0-9\/]+, changed state to up.*}
  nice 0 queue-priority normal maxrun 20.000 scheduler rp_primary Secu none
 ```
 
