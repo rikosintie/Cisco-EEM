@@ -67,23 +67,30 @@ $ = End of string
 
 **Avoid Out-of-order Execution**
 
-As described in the EEM documentation, the order of execution for action statements is controlled by their label (for example, action 0001 cli command enable has a label of 0001). This label value is NOT a number, but rather alphanumeric. Actions are sorted in ascending alphanumeric key sequence, use the label argument as the sort key, and they are run in this sequence. This can lead to unexpected order of execution, based on how you structure your action labels.
-Consider this example:
-    event manager applet test authorization bypass
-    event timer watchdog time 60 maxrun 60
-    action 13 syslog msg "You would expect to see this message first"
-    action 120 syslog msg "This message prints first"
+As described in the EEM documentation, the order of execution for action statements is controlled by their label (for example, action 0001 cli command enable has a label of 0001). This label value is NOT a number, but rather alphanumeric.  
+
+Actions are sorted in ascending alphanumeric key sequence, use the label argument as the sort key, and they are run in this sequence. This can lead to unexpected order of execution, based on how you structure your action labels.  
+Consider this example:  
+```  
+    event manager applet test authorization bypass  
+    event timer watchdog time 60 maxrun 60  
+    action 13 syslog msg "You would expect to see this message first"  
+    action 120 syslog msg "This message prints first"  
+```  
 
 Since 120 is before 13 in an alphanumeric comparison, this script does not run in the order you expect. 
 
-To avoid this, it is useful to use a system of padding like this:
-    event manager applet test authorization bypass
-    event timer watchdog time 60 maxrun 60
-    action 0010 syslog msg "This message appears first"
-    action 0020 syslog msg "This message appears second"
-    action 0120 syslog msg "This message appears third"
+To avoid this, it is useful to use a system of padding like this:  
 
-Disable Pagination
+```
+    event manager applet test authorization bypass  
+    event timer watchdog time 60 maxrun 60  
+    action 0010 syslog msg "This message appears first"  
+    action 0020 syslog msg "This message appears second"  
+    action 0120 syslog msg "This message appears third"  
+```  
+
+**Disable Pagination**
 
 EEM looks for the device prompt to determine when command output is complete. Commands that output more data than can be displayed on one screen (as configured by your terminal length), can prevent EEM scripts from completion (and eventually killed via the maxrun timer) as the device prompt is not shown until all pages of the output are viewed. Configure term len 0 at the start of EEM scripts that examine large outputs.
 
